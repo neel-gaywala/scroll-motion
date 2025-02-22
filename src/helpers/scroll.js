@@ -9,17 +9,18 @@ function handleScroll(elements) {
     const delay = parseFloat(node.getAttribute("data-aos-delay")) || 0;
     const easing = node.getAttribute("data-aos-easing") || "power2.out";
 
-    let animationFrom = DEFAULT_ANIMATIONS[animationType] || {};
+    let animationFrom = DEFAULT_ANIMATIONS[animationType] || { autoAlpha: 0 };
     let animationTo = { x: 0, y: 0, scale: 1, rotate: 0, autoAlpha: 1 };
 
     // Handle custom animations
     if (animationType === "custom") {
-      const x = parseFloat(node.getAttribute("data-aos-x")) || 0;
-      const y = parseFloat(node.getAttribute("data-aos-y")) || 0;
-      const scale = parseFloat(node.getAttribute("data-aos-scale")) || 1;
-      const rotate = parseFloat(node.getAttribute("data-aos-rotate")) || 0;
-
-      animationFrom = { x, y, scale, rotate, autoAlpha: 0 };
+      animationFrom = {
+        x: parseFloat(node.getAttribute("data-aos-x")) || 0,
+        y: parseFloat(node.getAttribute("data-aos-y")) || 0,
+        scale: parseFloat(node.getAttribute("data-aos-scale")) || 1,
+        rotate: parseFloat(node.getAttribute("data-aos-rotate")) || 0,
+        autoAlpha: 0,
+      };
     }
 
     gsap.fromTo(node, animationFrom, {

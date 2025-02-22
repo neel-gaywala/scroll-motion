@@ -19,13 +19,6 @@
   },
   "keywords": [],
   "devDependencies": {
-    "@parcel/resolver-glob": "^2.13.3",
-    "@parcel/transformer-babel": "^2.13.3",
-    "@parcel/transformer-inline-string": "^2.13.3",
-    "@parcel/transformer-js": "^2.13.3",
-    "@parcel/transformer-sass": "^2.13.3",
-    "@parcel/transformer-typescript-types": "^2.13.3",
-    "@parcel/transformer-worklet": "^2.13.3",
     "gsap": "^3.12.7",
     "lodash.debounce": "^4.0.8",
     "parcel": "^2.13.3"

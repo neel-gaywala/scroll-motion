@@ -4,7 +4,6 @@
  * made to animate elements on scroll using gsap
  * *******************************************************
  */
-// Modules & helpers
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import debounce from "lodash.debounce";
@@ -16,34 +15,26 @@ import observer from "./libs/observer";
 
 gsap.registerPlugin(ScrollTrigger);
 
-// Private variables
 let $aosElements = [];
 let initialized = false;
 
-// Default options
-let options = {
+const options = {
   disable: false,
   startEvent: "DOMContentLoaded",
   disableMutationObserver: false,
   debounceDelay: 50,
 };
 
-// Detect not supported browsers (<=IE9)
 const isBrowserNotSupported = () => document.all && !window.atob;
 
-const initializeScroll = function initializeScroll() {
-  // Add scrolling animations to elements using gsap
+const initializeScroll = () => {
   handleScroll($aosElements);
   return $aosElements;
 };
 
-// Refresh scroll trigger using gsap
-const refetchScrollTrigger = function refetchScrollTrigger() {
-  ScrollTrigger.refresh();
-};
+const refetchScrollTrigger = () => ScrollTrigger.refresh();
 
-// Refresh only when it was first initialized on startEvent
-const refresh = function refresh(initialize = false) {
+const refresh = (initialize = false) => {
   if (initialized) {
     refetchScrollTrigger();
   } else if (initialize) {
@@ -52,39 +43,27 @@ const refresh = function refresh(initialize = false) {
   }
 };
 
-// Hard refresh
-const refreshHard = function refreshHard() {
+const refreshHard = () => {
   $aosElements = elements();
-
   if (isDisabled(options.disable) || isBrowserNotSupported()) {
     return disable();
   }
-
   refetchScrollTrigger();
 };
 
-// Disable animations on scroll
-const disable = function () {};
+const disable = () => {};
 
-// Check disabled based on provided setting
-const isDisabled = function (optionDisable) {
-  return (
-    optionDisable === true ||
-    (optionDisable === "mobile" && detect.mobile()) ||
-    (optionDisable === "phone" && detect.phone()) ||
-    (optionDisable === "tablet" && detect.tablet()) ||
-    (typeof optionDisable === "function" && optionDisable() === true)
-  );
-};
+const isDisabled = (optionDisable) =>
+  optionDisable === true ||
+  (optionDisable === "mobile" && detect.mobile()) ||
+  (optionDisable === "phone" && detect.phone()) ||
+  (optionDisable === "tablet" && detect.tablet()) ||
+  (typeof optionDisable === "function" && optionDisable() === true);
 
-// Initializing aos-gsap
-const init = function init(settings) {
-  options = Object.assign(options, settings);
-
-  // Create initial array with elements -> to be fulfilled later with prepare()
+const init = (settings) => {
+  Object.assign(options, settings);
   $aosElements = elements();
 
-  // Disable mutation observing if not supported
   if (!options.disableMutationObserver && !observer.isSupported()) {
     console.info(`
       scroll-animation: MutationObserver is not supported on this browser,
@@ -94,42 +73,31 @@ const init = function init(settings) {
     options.disableMutationObserver = true;
   }
 
-  // it'll refresh plugin automatically
   if (!options.disableMutationObserver) {
     observer.ready("[data-sm]", refreshHard);
   }
 
-  // Disable animations if disabled or not supported
   if (isDisabled(options.disable) || isBrowserNotSupported()) {
     return disable();
   }
 
-  // Handle initializing
-  if (["DOMContentLoaded", "load"].indexOf(options.startEvent) === -1) {
-    // Listen to options.startEvent and initialize aos-gsap
-    document.addEventListener(options.startEvent, function () {
-      refresh(true);
-    });
+  if (!["DOMContentLoaded", "load"].includes(options.startEvent)) {
+    document.addEventListener(options.startEvent, () => refresh(true));
   } else {
-    window.addEventListener("load", function () {
-      refresh(true);
-    });
+    window.addEventListener("load", () => refresh(true));
   }
 
   if (
     options.startEvent === "DOMContentLoaded" &&
-    ["complete", "interactive"].indexOf(document.readyState) > -1
+    ["complete", "interactive"].includes(document.readyState)
   ) {
-    // Initialize aos-gsap if default startEvent was already fired
     refresh(true);
   }
 
-  // Refresh plugin on window resize or orientation change
   window.addEventListener(
     "resize",
     debounce(() => refresh(), options.debounceDelay)
   );
-
   window.addEventListener(
     "orientationchange",
     debounce(() => refresh(), options.debounceDelay)
@@ -138,17 +106,8 @@ const init = function init(settings) {
   return $aosElements;
 };
 
-// Check if window is available (ensuring it's running in a browser)
 if (typeof window !== "undefined") {
-  window.AOSGSAP = {
-    init,
-    refresh,
-    refreshHard,
-  };
+  window.AOSGSAP = { init, refresh, refreshHard };
 }
 
-export default {
-  init,
-  refresh,
-  refreshHard,
-};
+export default { init, refresh, refreshHard };
