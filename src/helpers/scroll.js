@@ -1,5 +1,5 @@
 import gsap from "gsap";
-import { DEFAULT_ANIMATIONS } from "./defaults";
+import { DEFAULT_ANIMATIONS } from "../constant/defaults";
 
 function handleScroll(elements) {
   elements.forEach((el) => {

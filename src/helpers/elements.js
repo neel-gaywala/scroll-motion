@@ -1,6 +1,5 @@
 export default () => {
-  const elements = document.querySelectorAll("[data-aos]");
-  return Array.prototype.map.call(elements, (node) => ({
+  return Array.from(document.querySelectorAll("[data-aos]"), (node) => ({
     node,
     animation: null,
   }));
