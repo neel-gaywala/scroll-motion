@@ -107,7 +107,7 @@ const init = (settings) => {
 };
 
 if (typeof window !== "undefined") {
-  window.AOSGSAP = { init, refresh, refreshHard };
+  window.AOS = { init, refresh, refreshHard };
 }
 
 export default { init, refresh, refreshHard };
