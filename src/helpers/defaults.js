@@ -1,0 +1,27 @@
+export const DEFAULT_ANIMATIONS = {
+  fade: { autoAlpha: 0 },
+  "fade-up": { y: 50, autoAlpha: 0 },
+  "fade-down": { y: -50, autoAlpha: 0 },
+  "fade-left": { x: 50, autoAlpha: 0 },
+  "fade-right": { x: -50, autoAlpha: 0 },
+  "fade-up-right": { x: -30, y: 30, autoAlpha: 0 },
+  "fade-up-left": { x: 30, y: 30, autoAlpha: 0 },
+  "fade-down-right": { x: -30, y: -30, autoAlpha: 0 },
+  "fade-down-left": { x: 30, y: -30, autoAlpha: 0 },
+
+  "flip-up": { rotateX: -90, autoAlpha: 0 },
+  "flip-down": { rotateX: 90, autoAlpha: 0 },
+  "flip-left": { rotateY: -90, autoAlpha: 0 },
+  "flip-right": { rotateY: 90, autoAlpha: 0 },
+
+  "zoom-in": { scale: 0.8, autoAlpha: 0 },
+  "zoom-in-up": { scale: 0.8, y: 50, autoAlpha: 0 },
+  "zoom-in-down": { scale: 0.8, y: -50, autoAlpha: 0 },
+  "zoom-in-left": { scale: 0.8, x: 50, autoAlpha: 0 },
+  "zoom-in-right": { scale: 0.8, x: -50, autoAlpha: 0 },
+  "zoom-out": { scale: 1.2, autoAlpha: 0 },
+  "zoom-out-up": { scale: 1.2, y: 50, autoAlpha: 0 },
+  "zoom-out-down": { scale: 1.2, y: -50, autoAlpha: 0 },
+  "zoom-out-left": { scale: 1.2, x: 50, autoAlpha: 0 },
+  "zoom-out-right": { scale: 1.2, x: -50, autoAlpha: 0 },
+};

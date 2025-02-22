@@ -1,0 +1,33 @@
+{
+  "name": "scroll-motion",
+  "version": "0.0.1",
+  "private": false,
+  "files": [
+    "dist"
+  ],
+  "author": "Neel Gaywala",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/neel-gaywala/scroll-motion"
+  },
+  "homepage": "https://github.com/neel-gaywala/scroll-motion",
+  "scripts": {
+    "parcel:build": "parcel build ./src/index.js --no-source-maps --dist-dir ./dist",
+    "dev": "parcel ./index.html -p 3000",
+    "publish": "publish"
+  },
+  "keywords": [],
+  "devDependencies": {
+    "@parcel/resolver-glob": "^2.13.3",
+    "@parcel/transformer-babel": "^2.13.3",
+    "@parcel/transformer-inline-string": "^2.13.3",
+    "@parcel/transformer-js": "^2.13.3",
+    "@parcel/transformer-sass": "^2.13.3",
+    "@parcel/transformer-typescript-types": "^2.13.3",
+    "@parcel/transformer-worklet": "^2.13.3",
+    "gsap": "^3.12.7",
+    "lodash.debounce": "^4.0.8",
+    "parcel": "^2.13.3"
+  }
+}

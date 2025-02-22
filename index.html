@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Wordpress Widget</title>
+    <script src="/src/index.js" defer type="module"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <body>
+    <div data-aos>Div 1</div>
+    <div data-aos>Div 2</div>
+    <script>
+      {
+        document.addEventListener("DOMContentLoaded", () => {
+          window.AOSGSAP.init();
+        });
+      }
+    </script>
+  </body>
+</html>
